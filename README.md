@@ -1,33 +1,50 @@
 # GeneCrypt - Genetic obfuscation tool
+
 ````markdown
-# 🧬 GeneCrypt - Genetic obfuscation tool
+# 🧬 GeneCrypt – Genetic obfuscation tool
 
-**GeneCrypt** is a fun and educational CLI tool that encodes and decodes text or files into a DNA-like format (`A`, `T`, `G`, `C`) using reversible transformations. It provides a creative way to obfuscate data by simulating genetic encoding principles.
+**GeneCrypt** is a Python-based CLI tool that encodes and decodes text or files into DNA-style sequences (`A`, `T`, `G`, `C`) using a custom, reversible transformation pipeline.
 
-> ⚠️ **Note**: This tool is for **obfuscation and educational purposes** only. It is **not cryptographically secure** and should not be used to store or transmit sensitive data.
+It’s a blend of data compression, hashing, and genetic code-inspired encoding — designed to be both **secure and fun**.
+
+---
+
+## 🔐 Security Status
+
+GeneCrypt is currently in **early beta**.
+
+- ✅ The encoded data is **reversible only with the correct numeric key**
+- 🔓 The encoding method is **decodable with effort** in its current form
+- 🛡️ Future updates will improve security with:
+  - Salted and non-deterministic key generation
+  - Hybrid encryption support
+  - Optional HMAC integrity checks
+
+> ⚠️ Until then, consider GeneCrypt **secure for experimentation**, **prototyping**, and **creative applications** — but not for storing high-risk sensitive data.
 
 ---
 
 ## 📦 Features
 
-- Encode plain text into DNA-style sequences
-- Derive a numeric key from the encoded DNA
-- Reconstruct original text using the numeric key
-- File encryption and decryption support
-- CLI interface for flexible usage
+- Convert any text or file to a DNA-style sequence (ATGC)
+- Compress and encode input using zlib + base64
+- Generate a numeric key using SHA-256 from a derived password
+- Reversible decoding with the correct key
+- File support for encryption/decryption
+- Easy-to-use command line interface
 
 ---
 
 ## 🛠️ Installation
 
-Clone the repository and navigate into the directory:
+Clone the repository:
 
 ```bash
 git clone https://github.com/your-username/genecrypt.git
 cd genecrypt
 ````
 
-Run the script using Python 3:
+Run with Python:
 
 ```bash
 python genecrypt.py --help
@@ -46,7 +63,7 @@ python genecrypt.py -m encrypt -t text -i "Hello, World!"
 ### 🔐 Encrypt File
 
 ```bash
-python genecrypt.py -m encrypt -t file -i message.txt
+python genecrypt.py -m encrypt -t file -i example.txt
 ```
 
 ### 🔓 Decrypt Text
@@ -58,48 +75,40 @@ python genecrypt.py -m decrypt -t text -i <GENETIC_CODE> -p <NUMERIC_SECRET>
 ### 🔓 Decrypt File
 
 ```bash
-python genecrypt.py -m decrypt -t file -i message.txt -p <NUMERIC_SECRET>
+python genecrypt.py -m decrypt -t file -i example.txt -p <NUMERIC_SECRET>
 ```
 
 ---
 
-## 🧬 How It Works
+## 🧪 How It Works
 
-1. Text is compressed and encoded using Base64 and zlib.
-2. It is then converted into a binary string and mapped to the genetic bases:
-
-   * `00` → A
-   * `01` → T
-   * `10` → G
-   * `11` → C
-3. The complement of this genetic string is generated.
-4. This complement is reversed to derive a pseudo-password.
-5. The password is compressed and hashed with SHA-256, and a numeric secret is derived.
-6. This numeric secret is used to alter the original encoded integer and generate the final DNA string.
+1. Compress input with zlib and encode with base64
+2. Convert to binary and then into DNA-style bases (A=00, T=01, G=10, C=11)
+3. Generate the complement of the sequence
+4. Decode complement back to a password
+5. Hash and convert password into a numeric key
+6. Use key to encode original text into the final genetic string
 
 ---
 
-## 📄 Example
+## 🔗 Roadmap
 
-```bash
-[+] Genetic Code: ATGCTAGTCGAT...
-[+] Complement Code: TACGATCAGCTA...
-[+] Extracted Password: ...
-[+] Numeric Encoded Secret: 23948512
-[+] Final Genetic Code with Key: TGACGTAGCTAG...
-```
-
-To decrypt, supply the final genetic code and the numeric secret:
-
-```bash
-python genecrypt.py -m decrypt -t text -i TGACGTAGCTAG... -p 23948512
-```
+* [ ] Non-deterministic output with salt
+* [ ] Optional AES-256 hybrid encryption layer
+* [ ] Built-in HMAC for integrity verification
+* [ ] Web-based UI (coming soon!)
 
 ---
 
-## ⚠️ Disclaimer
+## 💡 Example
 
-This tool does **not** use industry-standard encryption algorithms. Do **not** use it for securing real passwords, sensitive information, or any critical data.
+```
+Input: "Hello, World!"
+➡ Genetic Code: ATGCTAGTC...
+➡ Complement: TACGATCAG...
+➡ Final DNA Code: TGCAAGT...
+➡ Use secret to decode
+```
 
 ---
 
