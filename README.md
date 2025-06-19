@@ -127,5 +127,3 @@ If you like this project, consider [Buying me a coffee](https://buymeacoffee.com
 This project is licensed under the [Apache License 2.0](LICENSE).
 
 © 2025 Adhwaith A S. You must retain attribution to the original author when using or modifying this code.
-
-```
