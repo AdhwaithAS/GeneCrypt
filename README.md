@@ -1,5 +1,3 @@
-# GeneCrypt - Genetic obfuscation tool
-
 # 🧬 GeneCrypt – Genetic obfuscation tool
 
 **GeneCrypt** is a Python-based CLI tool that encodes and decodes text or files into DNA-style sequences (`A`, `T`, `G`, `C`) using a custom, reversible transformation pipeline.
